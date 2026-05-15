@@ -1,0 +1,48 @@
+name: publish-pypi
+
+# Publishes compile-pdf-rewrite to PyPI when a v*.*.* tag is pushed.
+#
+# Auth: PyPI Trusted Publishers (OIDC) — no API token in secrets.
+# Configure once at https://pypi.org/manage/account/publishing/ with:
+#   - PyPI project: compile-pdf-rewrite
+#   - Owner:        printwithsynergy
+#   - Repository:   compile-pdf-rewrite
+#   - Workflow:     publish-pypi.yml
+#   - Environment:  release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  build:
+    name: build sdist + wheel
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --upgrade pip build
+      - run: python -m build --sdist --wheel --outdir dist/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/*
+
+  publish:
+    name: publish to PyPI
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: release
+      url: https://pypi.org/project/compile-pdf-rewrite/
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
