@@ -6,8 +6,8 @@ Fifteen mutations across structural, hygiene, and lifecycle categories. OCG flip
 
 ## Install
 
-```
-pip install compile-pdf-rewrite
+```bash
+uv pip install compile-pdf-rewrite
 ```
 
 ## Position in the stack
