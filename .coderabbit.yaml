@@ -18,8 +18,6 @@ reviews:
     - "!**/*.min.js"
     - "!**/*.lock"
     - "!**/package-lock.json"
-    - "!**/uv.lock"
-    - "!**/poetry.lock"
   path_instructions:
     - path: "**/*.{ts,tsx,js,jsx}"
       instructions: "Flag unhandled promises, missing null checks, hardcoded secrets/env vars, and unsafe `any` usage. Skip stylistic preferences — Prettier handles those."
