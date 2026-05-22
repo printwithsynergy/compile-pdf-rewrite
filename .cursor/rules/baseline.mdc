@@ -1,0 +1,21 @@
+---
+description: PrintWithSynergy baseline rules
+alwaysApply: true
+---
+
+You are working in this repository, part of the printwithsynergy organization.
+
+# Conventions
+- Conventional commits (feat:, fix:, chore:, refactor:, docs:, test:)
+- Never commit secrets. Use .env (gitignored) for local config.
+- Prefer pure functions; isolate side effects.
+- Write tests alongside code changes when behavior changes.
+
+# Before modifying code
+- Use the code-review-graph MCP tools (get_impact_radius_tool, get_blast_radius) to check downstream impact.
+- For unfamiliar symbols, use sverklo_lookup or sverklo_refs first.
+- Never assume context. If the codebase has CLAUDE.md or AGENTS.md, read it first.
+
+# Style
+- Match existing code style. Do not reformat unrelated lines.
+- No "helper" refactors mixed with feature changes.
