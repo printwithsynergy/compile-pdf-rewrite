@@ -1,0 +1,29 @@
+language: en-US
+reviews:
+  profile: chill
+  request_changes_workflow: false
+  high_level_summary: true
+  poem: false
+  review_status: true
+  collapse_walkthrough: true
+  auto_review:
+    enabled: true
+    drafts: false
+  path_filters:
+    - "!dist/**"
+    - "!build/**"
+    - "!.next/**"
+    - "!node_modules/**"
+    - "!**/__pycache__/**"
+    - "!**/*.min.js"
+    - "!**/*.lock"
+    - "!**/package-lock.json"
+    - "!**/uv.lock"
+    - "!**/poetry.lock"
+  path_instructions:
+    - path: "**/*.{ts,tsx,js,jsx}"
+      instructions: "Flag unhandled promises, missing null checks, hardcoded secrets/env vars, and unsafe `any` usage. Skip stylistic preferences — Prettier handles those."
+    - path: "**/*.py"
+      instructions: "Flag unhandled exceptions, missing type hints on public functions, hardcoded secrets, and SQL injection risks. Skip style — Ruff handles those."
+chat:
+  auto_reply: true
